@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
+import { StarFilledIcon } from "@radix-ui/react-icons";
 
 const testimonials = [
   {
@@ -29,9 +29,7 @@ function Stars() {
   return (
     <div className="flex gap-0.5" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} viewBox="0 0 20 20" className="h-4 w-4 fill-amber-400" aria-hidden="true">
-          <path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 15l-5.3 2.6 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
-        </svg>
+        <StarFilledIcon key={i} className="h-4 w-4 text-amber-400" aria-hidden="true" />
       ))}
     </div>
   );
@@ -41,19 +39,21 @@ export default function Testimonials() {
   return (
     <section className="bg-cream py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal>
+        <div className="section-animate">
           <span className="text-xs font-semibold uppercase tracking-wider text-night/50">
             What Our Clients Say
           </span>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-night sm:text-4xl lg:text-5xl">
             Loved by Studio Owners
           </h2>
-        </Reveal>
+        </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.1}>
-              <figure className="flex h-full flex-col rounded-2xl border border-black/5 bg-white p-7">
+          {testimonials.map((t) => (
+            <figure
+              key={t.name}
+              className="section-animate flex h-full flex-col rounded-2xl border border-black/5 bg-white p-7"
+            >
                 <Stars />
                 <blockquote className="mt-4 flex-1 text-base leading-relaxed text-night/70">
                   “{t.quote}”
@@ -73,8 +73,7 @@ export default function Testimonials() {
                     <p className="text-xs text-night/50">{t.studio}</p>
                   </div>
                 </figcaption>
-              </figure>
-            </Reveal>
+            </figure>
           ))}
         </div>
       </div>

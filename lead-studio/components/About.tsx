@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
 
 const gridImages = [
   { id: "photo-1571902943202-507ec2618e8f", alt: "Weight training session" },
@@ -8,10 +7,26 @@ const gridImages = [
   { id: "photo-1518310383802-640c2de311b2", alt: "Pilates reformer workout" },
 ];
 
-function StatBox({ value, label }: { value: string; label: string }) {
+function StatBox({
+  value,
+  target,
+  suffix,
+  label,
+}: {
+  value: string;
+  target: number;
+  suffix: string;
+  label: string;
+}) {
   return (
-    <div className="rounded-2xl border border-black/5 bg-white p-5">
-      <p className="text-3xl font-extrabold text-night">{value}</p>
+    <div className="section-animate rounded-2xl border border-black/5 bg-white p-5">
+      <p
+        className="stat-number text-3xl font-extrabold text-night"
+        data-target={target}
+        data-suffix={suffix}
+      >
+        {value}
+      </p>
       <p className="mt-1 text-sm text-night/60">{label}</p>
     </div>
   );
@@ -22,11 +37,11 @@ export default function About() {
     <section id="about" className="bg-cream py-20 lg:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
         {/* Left column */}
-        <Reveal>
-          <span className="text-xs font-semibold uppercase tracking-wider text-night/50">
+        <div>
+          <span className="section-animate block text-xs font-semibold uppercase tracking-wider text-night/50">
             Get To Know Us
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-night sm:text-4xl lg:text-5xl">
+          <h2 className="section-animate mt-3 text-3xl font-extrabold leading-tight tracking-tight text-night sm:text-4xl lg:text-5xl">
             We Fill Your Classes.
             <br />
             You Focus on{" "}
@@ -34,27 +49,37 @@ export default function About() {
               Training.
             </span>
           </h2>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-night/70">
+          <p className="section-animate mt-6 max-w-lg text-lg leading-relaxed text-night/70">
             We specialise in lead generation for gyms, yoga, and pilates
             studios. No fluff — just a steady flow of new trial bookings and
             memberships.
           </p>
 
           <div className="mt-8 grid max-w-md grid-cols-2 gap-4">
-            <StatBox value="500+" label="Leads Generated · Across all clients" />
-            <StatBox value="89%" label="Client Retention · Avg. every year" />
+            <StatBox
+              value="500+"
+              target={500}
+              suffix="+"
+              label="Leads Generated · Across all clients"
+            />
+            <StatBox
+              value="89%"
+              target={89}
+              suffix="%"
+              label="Client Retention · Avg. every year"
+            />
           </div>
 
           <a
             href="#results"
-            className="mt-8 inline-block rounded-full bg-night px-7 py-3.5 text-base font-semibold text-white transition-transform hover:scale-[1.03]"
+            className="section-animate mt-8 inline-block rounded-full bg-night px-7 py-3.5 text-base font-semibold text-white transition-transform hover:scale-[1.03]"
           >
             Learn More →
           </a>
-        </Reveal>
+        </div>
 
         {/* Right column: image grid */}
-        <Reveal delay={0.15} className="relative">
+        <div className="section-animate relative">
           <div className="grid grid-cols-2 gap-4">
             {gridImages.map(({ id, alt }, i) => (
               <div
@@ -79,7 +104,7 @@ export default function About() {
             <p className="text-2xl font-extrabold text-ink">3+</p>
             <p className="text-xs font-semibold text-ink">Years Experience</p>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

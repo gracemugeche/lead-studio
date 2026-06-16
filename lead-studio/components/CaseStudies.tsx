@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
 
 const caseStudies = [
   {
@@ -29,19 +28,21 @@ export default function CaseStudies() {
   return (
     <section id="results" className="bg-cream py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal>
+        <div className="section-animate">
           <span className="text-xs font-semibold uppercase tracking-wider text-night/50">
             Case Studies
           </span>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-night sm:text-4xl lg:text-5xl">
             Some Recent <span className="text-lime">Results</span>
           </h2>
-        </Reveal>
+        </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {caseStudies.map((study, i) => (
-            <Reveal key={study.headline} delay={i * 0.1}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white">
+          {caseStudies.map((study) => (
+            <article
+              key={study.headline}
+              className="section-animate group flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white"
+            >
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={`https://images.unsplash.com/${study.image}?w=600&h=400&fit=crop`}
@@ -68,8 +69,7 @@ export default function CaseStudies() {
                     View Case Study →
                   </a>
                 </div>
-              </article>
-            </Reveal>
+            </article>
           ))}
         </div>
       </div>
