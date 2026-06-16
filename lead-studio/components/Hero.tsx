@@ -129,7 +129,7 @@ export default function Hero() {
       {/* Content layer */}
       <div className="absolute inset-0 z-10 mx-auto flex max-w-7xl flex-col px-6">
         {/* Top-right floating card */}
-        <div className="hero-card absolute right-6 top-24 flex w-[280px] items-center gap-3 rounded-2xl bg-white p-3 shadow-2xl sm:right-10">
+        <div className="hero-card absolute right-4 top-20 flex w-[230px] items-center gap-3 rounded-2xl bg-white p-3 shadow-2xl sm:right-10 sm:top-24 sm:w-[280px]">
           <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl">
             <Image
               src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=160&h=160&fit=crop"
@@ -149,49 +149,43 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Bottom-left headline block */}
-        <div className="mt-auto max-w-2xl pb-28 sm:pb-32">
-          <h1 className="text-[clamp(48px,7vw,96px)] font-extrabold leading-[1.05] text-white">
+        {/* Bottom content: headline + CTA on the left, pills bottom-right */}
+        <div className="mt-auto pb-20 sm:pb-28">
+          <div className="max-w-2xl">
+            <h1 className="text-[clamp(48px,7vw,96px)] font-extrabold leading-[1.05] text-white">
+              {headlineLines.map((line, li) => (
+                <span key={li} className="block overflow-hidden">
+                  {line.map((word, wi) => (
+                    <span
+                      key={wi}
+                      className="hero-word mr-[0.25em] inline-block will-change-transform"
+                    >
+                      {word}
+                    </span>
+                  ))}
+                </span>
+              ))}
+            </h1>
 
-            {headlineLines.map((line, li) => (
-              <span key={li} className="block overflow-hidden">
-                {line.map((word, wi) => (
-                  <span
-                    key={wi}
-                    className="hero-word mr-[0.25em] inline-block will-change-transform"
-                  >
-                    {word}
-                  </span>
-                ))}
-              </span>
+            <p className="hero-sub mt-6 max-w-[420px] text-base leading-relaxed text-white/80 sm:text-lg">
+              We run Meta Ads and build lead funnels that fill your gym, yoga, or
+              pilates studio with paying members — on autopilot.
+            </p>
+
+            <a
+              href="#contact"
+              className="hero-cta mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-ink transition-transform hover:scale-[1.03]"
+            >
+              Get Free Audit →
+            </a>
+          </div>
+
+          {/* Pills: wrap in-flow under the CTA on mobile, float bottom-right on desktop */}
+          <div className="mt-8 flex flex-wrap gap-2.5 sm:gap-3 lg:absolute lg:bottom-10 lg:right-10 lg:mt-0 lg:max-w-md lg:justify-end">
+            {pills.map((pill) => (
+              <Pill key={pill}>{pill}</Pill>
             ))}
-          </h1>
-
-          <p className="hero-sub mt-6 max-w-[420px] text-base leading-relaxed text-white/80 sm:text-lg">
-            We run Meta Ads and build lead funnels that fill your gym, yoga, or
-            pilates studio with paying members — on autopilot.
-          </p>
-
-          <a
-            href="#contact"
-            className="hero-cta mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-ink transition-transform hover:scale-[1.03]"
-          >
-            Get Free Audit →
-          </a>
-        </div>
-      </div>
-
-      {/* Bottom-right staggered pill tags */}
-      <div className="absolute bottom-10 right-6 z-10 flex flex-col items-end gap-3 sm:right-10">
-        <div className="flex gap-3">
-          {pills.slice(0, 3).map((pill) => (
-            <Pill key={pill}>{pill}</Pill>
-          ))}
-        </div>
-        <div className="mr-8 flex gap-3">
-          {pills.slice(3).map((pill) => (
-            <Pill key={pill}>{pill}</Pill>
-          ))}
+          </div>
         </div>
       </div>
     </section>
@@ -200,7 +194,7 @@ export default function Hero() {
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="hero-pill rounded-full border border-white/40 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-md">
+    <span className="hero-pill whitespace-nowrap rounded-full border border-white/40 bg-white/10 px-3.5 py-1.5 text-xs font-medium text-white backdrop-blur-md sm:px-4 sm:py-2 sm:text-sm">
       {children}
     </span>
   );
